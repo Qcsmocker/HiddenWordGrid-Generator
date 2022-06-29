@@ -1,23 +1,22 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 //Generate a square grid of size N of random characters.
 
 public class Generator {
     
     // Generate a square grid of size N of random characters.
-    public Generator(int n) {
+    public Generator(int n, String filename) {
 
         int N = n;
 
         char[][] grid = getRandomGrid(N);
 
         try {
-            ArrayList<String> dictionnaire = FileReader.readDictionary("/home/metacrib/Documents/GitHub/MotsCacheGenerateur/dictionnaire.txt");
+            ArrayList<String> dictionnaire = FileReader.readDictionary(filename);
             
-            // Print the dictionary.
+            // Add every word from the dictionary to the grid.
             for (String word : dictionnaire) {
                 grid = addWord(grid, word);
             }
@@ -129,7 +128,7 @@ public class Generator {
         }
         
         // print the information about the word added, the direction and the position
-        System.out.println("Word added: " + word+"\nDirection: " + direction + "\nPosition: (" + x + "," + y + ")");
+        // System.out.println("Word added: " + word+"\nDirection: " + direction + "\nPosition: (" + x + "," + y + ")");
 
         return grid;
     }
